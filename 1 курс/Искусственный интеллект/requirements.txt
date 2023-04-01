@@ -1,0 +1,6 @@
+numpy==1.24.2
+matplotlib==3.6.3
+scipy==1.10.0
+yfinance==0.2.11
+scikit-learn==1.2.2
+seaborn==0.12.2

@@ -1,0 +1,15 @@
+A valve is a device or natural object that regulates, directs or controls the flow of a fluid (gases, liquids, fluidized solids, or slurries) by opening, closing, or partially obstructing various passageways. Valves are technically fittings, but are usually discussed as a separate category. In an open valve, fluid flows in a direction from higher pressure to lower pressure. The word is derived from the Latin valva, the moving part of a door, in turn from volvere, to turn, roll.
+
+The simplest, and very ancient, valve is simply a freely hinged flap which swings down to obstruct fluid (gas or liquid) flow in one direction, but is pushed up by the flow itself when the flow is moving in the opposite direction. This is called a check valve, as it prevents or "checks" the flow in one direction. Modern control valves may regulate pressure or flow downstream and operate on sophisticated automation systems.
+
+Valves have many uses, including controlling water for irrigation, industrial uses for controlling processes, residential uses such as on/off and pressure control to dish and clothes washers and taps in the home. Even aerosol spray cans have a tiny valve built in. Valves are also used in the military and transport sectors. In HVAC ductwork and other near-atmospheric air flows, valves are instead called dampers. In compressed air systems, however, valves are used with the most common type being ball valves.
+
+Valves are found in virtually every industrial process, including water and sewage processing, mining, power generation, processing of oil, gas and petroleum, food manufacturing, chemical and plastic manufacturing and many other fields.
+
+People in developed nations use valves in their daily lives, including plumbing valves, such as taps for tap water, gas control valves on cookers, small valves fitted to washing machines and dishwashers, safety devices fitted to hot water systems, and poppet valves in car engines.
+
+In nature there are valves, for example one-way valves in veins controlling the blood circulation, and heart valves controlling the flow of blood in the chambers of the heart and maintaining the correct pumping action.
+
+Valves may be operated manually, either by a handle, lever, pedal or wheel. Valves may also be automatic, driven by changes in pressure, temperature, or flow. These changes may act upon a diaphragm or a piston which in turn activates the valve, examples of this type of valve found commonly are safety valves fitted to hot water systems or boilers.
+
+More complex control systems using valves requiring automatic control based on an external input (i.e., regulating flow through a pipe to a changing set point) require an actuator. An actuator will stroke the valve depending on its input and set-up, allowing the valve to be positioned accurately, and allowing control over a variety of requirements.
