@@ -14,51 +14,89 @@
 - записать строку в файл, разбивая на строки, при этом на каждой строке записывать не более 100 символов
   при этом не делить слова.
 """
+from operator import itemgetter
+
+def wiki_function():
+    linesList = []
+    string = ""
+
+    for iter in range(1, 8):
+        match iter:
+            case 1:
+                with open("article.txt", 'r') as f:
+                    for line in f:
+                        linesList.append(line)
+
+            # Удаление всех символы, кроме букв и пробелов
+            case 2:
+                temp = ""
+                for i in range(len(linesList)):
+                    for x in linesList[i]:
+                        if x.isalpha() or x == ' ':
+                            temp += x
+                    linesList[i] = temp
+                    temp = ""
+                    
+            case 3:
+                string = " ".join(linesList) + " "
+
+            # Создание словаря, где ключ - слово, а значение - количество раз, которое это слово встречается в тексте.
+            case 4:
+                dict = {}
+                word = ""
+                for i in range(len(string)):
+                    if string[i] != " ":
+                        word += string[i]
+                    else:
+                        if word in dict:
+                            dict[word] += 1
+                        else:
+                            if word != "":
+                                dict[word] = 1
+                        word = ""
+
+            # Сортировка словаря и вывод топ-10 самый частых слов
+            case 5:
+                linesList = []
+                a = dict.items()
+                a = sorted(a, key=itemgetter(1), reverse=True)
+                wordCount = 0
+
+                for i in a:
+                    wordCount += 1
+                    linesList.append(i[0])
+                    print(f'{wordCount} место: {i[0]} - встречается {i[1]} раз')
+                    if wordCount == 10:
+                        break
+
+            case 6:
+                # Замена слов из словаря на PYTHON
+                newStr = ""
+                word = ""
+                for i in range(len(string)):
+                    if string[i] != " ":
+                        word += string[i]
+                    else:
+                        if word in linesList:
+                            newStr += "PYTHON "
+                        else:
+                            newStr += word
+                            newStr += " "
+                        word = ""
+                string = newStr
+                
+                # Запись строк в файл output.txt
+                # При этом перенося слова на новые строки
+            case 7:
+                with open("output.txt", 'w') as file:
+                    words = string.split()
+                    line = ''
+                    for word in words:
+                        if len(line + word) + 1 > 100:
+                            file.write(line.strip() + '\n')
+                            line = ''
+                        line += word + ' '
+                    file.write(line.strip())
 
 
-def wiki_function(filename):
-    # Считываем файл построчно
-    with open(filename, 'r', encoding='utf-8') as file:
-        lines = file.readlines()
-
-    # Создаем список слов без знаков препинания и цифр
-    words = []
-    for line in lines:
-        # Убираем символ переноса строки и разбиваем строку на слова
-        line_words = line.strip().split()
-        # Добавляем слова в список без знаков препинания и цифр
-        for word in line_words:
-            clean_word = ''.join(filter(lambda x: x.isalpha() or x.isspace(), word))
-            if clean_word:
-                words.append(clean_word.lower())
-
-    # Создаем словарь для подсчета количества слов
-    word_counts = {}
-    for word in words:
-        if word in word_counts:
-            word_counts[word] += 1
-        else:
-            word_counts[word] = 1
-
-    # Сортируем слова по количеству упоминаний
-    sorted_word_counts = sorted(word_counts.items(), key=lambda x: x[1], reverse=True)
-
-    # Заменяем наиболее часто встречающиеся слова на "PYTHON"
-    popular_words = [word[0] for word in sorted_word_counts[:10]]
-    replaced_text = ' '.join(['PYTHON' if word in popular_words else word for word in words])
-
-    # Записываем результат в новый файл
-    with open('output.txt', 'w', encoding='utf-8') as file:
-        # Разбиваем строку на строки не длиннее 100 символов
-        lines = [replaced_text[i:i+100] for i in range(0, len(replaced_text), 100)]
-        file.write('\n'.join(lines))
-
-    # Выводим 10 наиболее часто встречающихся слов
-    print('10 наиболее часто встречающихся слов:')
-    for i, word_count in enumerate(sorted_word_counts[:10]):
-        print(f'{i+1} место --- {word_count[0]} --- {word_count[1]} раз')
-
-
-
-# Вызов функции
-wiki_function('article.txt')
+wiki_function()
