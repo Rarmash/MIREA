@@ -19,3 +19,22 @@
 Предусмотреть хотя бы в 3 местах обработку возможных исключений.
 В каждом модуле провести подробное тестирование всех создаваемых объектов и функций.
 """
+
+from item import Item
+from menu import Menu
+from drink import Drink
+from food import Food
+
+menu = Menu("Ресторан 'Моя кухня'", "ул. Пушкина, д.10")
+
+menu += Drink("Кофе", 150, 250, "Горячие напитки")
+menu += Drink("Чай", 100, 200, "Горячие напитки")
+
+menu += Food("Салат", 250, 200, 10)
+menu += Food("Суп", 300, 300, 20)
+
+menu[0].price = 200
+
+del menu[3]
+
+menu.create_txt_file("menu.txt")

@@ -1,3 +1,5 @@
+from item import Item
+
 class Drink(Item):
     def __init__(self, name, price, volume, menu_category):
         super().__init__(name, price)
@@ -15,11 +17,11 @@ class Drink(Item):
         if name in self.ingredients:
             del self.ingredients[name]
         else:
-            raise ValueError("Ingredient not found")
+            raise ValueError("Ингридиент не найден")
 
     def print_ingredients(self):
         for name, amount in self.ingredients.items():
             print(f"{name}: {amount}")
 
     def __str__(self):
-        return f"{self.name} ({self.menu_category}, {self.volume}ml, {self.price}руб)"
+        return f"{self.name} ({self.menu_category}, {self.volume}мл, {self.price}руб)"

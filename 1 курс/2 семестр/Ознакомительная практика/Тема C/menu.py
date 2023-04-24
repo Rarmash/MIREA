@@ -1,3 +1,8 @@
+from item import Item
+from drink import Drink
+from food import Food
+
+
 class Menu:
     def __init__(self, restaurant_name, address, drinks=None, foods=None):
         self.restaurant_name = restaurant_name
@@ -6,7 +11,7 @@ class Menu:
         self.foods = foods if foods else []
 
     def __str__(self):
-        return f'{self.restaurant_name}\n{self.address}\n\nDrinks:\n{self._print_items(self.drinks)}\n\nFoods:\n{self._print_items(self.foods)}'
+        return f'{self.restaurant_name}\n{self.address}\n\nНапитки:\n{self._print_items(self.drinks)}\n\nБлюда:\n{self._print_items(self.foods)}'
 
     def __len__(self):
         return len(self.drinks) + len(self.foods)
@@ -35,7 +40,7 @@ class Menu:
         elif isinstance(other, Food):
             self.foods.append(other)
         else:
-            raise TypeError("Menu can only be added to Drink or Food")
+            raise TypeError("В меню можно добавить лишь напитки либо блюда")
 
         return self
 
@@ -45,7 +50,7 @@ class Menu:
         elif isinstance(other, Food):
             self.foods.remove(other)
         else:
-            raise TypeError("Menu can only be subtracted by Drink or Food")
+            raise TypeError("В меню можно добавить лишь напитки либо блюда")
 
         return self
 
