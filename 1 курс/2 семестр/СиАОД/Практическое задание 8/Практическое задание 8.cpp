@@ -3,86 +3,74 @@
 using namespace std;
 using namespace chrono;
 
-void selection_sort(int arr[], int n, long long move_count, long long comparison_count) {
+void selection_sort(int arr[], int n, long long &moves, long long &comps) {
     int i, j, min_idx;
 
     for (i = 0; i < n - 1; i++) {
         min_idx = i;
         for (j = i + 1; j < n; j++) {
-            comparison_count++; // Увеличиваем счетчик сравнений
+            comps++;
             if (arr[j] < arr[min_idx]) {
                 min_idx = j;
             }
         }
         if (min_idx != i) {
             swap(arr[i], arr[min_idx]);
-            move_count += 3; // Увеличиваем счетчик перемещений на 3
+            moves += 3;
         }
     }
 }
 
 
-void heapSort(int arr[], int n, long long comparisons, long long moves) {
-    // Build heap (rearrange array)
+void heapSort(int arr[], int n, long long &comps, long long &moves) {
     for (int i = n / 2 - 1; i >= 0; i--) {
-        int largest = i; // Initialize largest as root
-        int l = 2 * i + 1; // left = 2*i + 1
-        int r = 2 * i + 2; // right = 2*i + 2
+        int largest = i;
+        int l = 2 * i + 1;
+        int r = 2 * i + 2;
 
-        // If left child is larger than root
-        comparisons++;
+        comps++;
         if (l < n && arr[l] > arr[largest])
             largest = l;
 
-        // If right child is larger than largest so far
-        comparisons++;
+        comps++;
         if (r < n && arr[r] > arr[largest])
             largest = r;
 
-        // If largest is not root
         if (largest != i) {
             moves += 3;
             swap(arr[i], arr[largest]);
 
-            // Recursively heapify the affected sub-tree
             i = largest;
         }
     }
 
-    // One by one extract an element from heap
     for (int i = n - 1; i >= 0; i--) {
-        // Move current root to end
         moves += 3;
         swap(arr[0], arr[i]);
 
-        int largest = 0; // Initialize largest as root
-        int l = 2 * 0 + 1; // left = 2*i + 1
-        int r = 2 * 0 + 2; // right = 2*i + 2
+        int largest = 0;
+        int l = 2 * 0 + 1;
+        int r = 2 * 0 + 2;
 
-        // If left child is larger than root
-        comparisons++;
+        comps++;
         if (l < i && arr[l] > arr[largest])
             largest = l;
 
-        // If right child is larger than largest so far
-        comparisons++;
+        comps++;
         if (r < i && arr[r] > arr[largest])
             largest = r;
 
-        // If largest is not root
         if (largest != 0) {
             moves += 3;
             swap(arr[0], arr[largest]);
 
-            // Recursively heapify the affected sub-tree
             int j = largest;
             while (2 * j + 1 < i) {
                 largest = 2 * j + 1;
-                comparisons++;
+                comps++;
                 if (2 * j + 2 < i && arr[2 * j + 2] > arr[largest])
                     largest = 2 * j + 2;
 
-                // If largest is not root
                 if (largest != j) {
                     moves += 3;
                     swap(arr[j], arr[largest]);
@@ -116,7 +104,6 @@ void Merge(int arr[], int left, int medium, int right, long long& comps, long lo
     }
 
     int i = 0, j = 0, k = left;
-    // Перестановка элементов
     while (i < leftHalfSize && j < rightHalfSize)
     {
         if (leftHalf[i] <= rightHalf[j])
@@ -132,7 +119,6 @@ void Merge(int arr[], int left, int medium, int right, long long& comps, long lo
         comps++;
     }
 
-    // Выгрузка оставшихся элемнтов
     while (i < leftHalfSize)
     {
         arr[k++] = leftHalf[i++];
