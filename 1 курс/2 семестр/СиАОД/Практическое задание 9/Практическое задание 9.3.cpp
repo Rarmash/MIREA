@@ -143,7 +143,7 @@ int main()
             record r = getRecord(fp, sr.pos);
             cout << r.name << " " << r.year << endl;
             clock_t end2 = clock();
-            double duration_ms2 = 1000.0 * (end2 - start2) / CLOCKS_PER_SEC;
+            double duration_ms2 = 1000.0 * static_cast<double>(end2 - start2) / CLOCKS_PER_SEC;
             cout << "Время создания дополнительной структуры: " << duration_ms1 << endl;
             cout << "Время выполнения поиска: " << duration_ms2 << endl;
             delete[] table;
