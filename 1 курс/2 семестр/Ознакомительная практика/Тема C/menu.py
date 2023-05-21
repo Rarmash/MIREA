@@ -55,7 +55,7 @@ class Menu:
         return self
 
     def create_txt_file(self, file_path):
-        with open(file_path, 'w') as f:
+        with open(file_path, 'w', encoding='utf8') as f:
             f.write(str(self))
             for drink in self.drinks:
                 f.write('\n\n' + str(drink))
