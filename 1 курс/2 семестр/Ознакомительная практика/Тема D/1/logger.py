@@ -1,33 +1,37 @@
 import pickle
 import datetime
 
-LOG_FILE = "log.txt"
+LOG_FILE = 'log.txt'
 
-def log_event(key, comment):
+
+def log_entry(key, comment):
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    log_entry = f"{key} --- {timestamp} --- {comment}\n"
-    with open(LOG_FILE, "a", encoding='utf8') as file:
-        file.write(log_entry)
+    log_line = f"{key} --- {timestamp} --- {comment}"
+    with open(LOG_FILE, 'a', encoding='utf8') as file:
+        file.write(log_line + '\n')
 
-class ClassA:
+
+class MyClass:
     def __init__(self):
-        log_event("CRE", "создан экземпляр ClassA")
-    
+        log_entry('CRE', 'создано')
+
     def modify(self):
-        log_event("INF", "изменение в ClassA")
-    
-    def print_info(self):
-        log_event("INF", "вывод информации из ClassA")
+        log_entry('INF', 'изменено')
 
-class ClassB:
-    def __init__(self):
-        log_event("CRE", "создан экземпляр ClassB")
-    
     def delete(self):
-        log_event("INF", "удаление экземпляра ClassB")
-    
+        log_entry('INF', 'удалено')
+
     def add(self):
-        log_event("INF", "добавление в ClassB")
-    
+        log_entry('INF', 'добавлено')
+
     def print_info(self):
-        log_event("INF", "вывод информации из ClassB")
+        log_entry('INF', 'распечатано')
+
+
+# Создание экземпляров класса и запись их в файл
+obj1 = MyClass()
+obj2 = MyClass()
+
+with open('objects.pkl', 'wb') as file:
+    pickle.dump(obj1, file)
+    pickle.dump(obj2, file)

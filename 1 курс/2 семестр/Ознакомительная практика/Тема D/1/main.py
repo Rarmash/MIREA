@@ -1,26 +1,11 @@
 import pickle
-from logger import ClassA, ClassB
+from logger import MyClass
 
-def serialize_objects():
-    obj1 = ClassA()
-    obj2 = ClassB()
+# Десериализация объектов
+with open('objects.pkl', 'rb') as file:
+    obj1 = pickle.load(file)
+    obj2 = pickle.load(file)
 
-    with open("objects.pkl", "wb") as file:
-        pickle.dump(obj1, file)
-        pickle.dump(obj2, file)
-
-def deserialize_objects():
-    with open("objects.pkl", "rb") as file:
-        obj1 = pickle.load(file)
-        obj2 = pickle.load(file)
-
-    obj1.modify()
-    obj1.print_info()
-
-    obj2.delete()
-    obj2.add()
-    obj2.print_info()
-
-if __name__ == "__main__":
-    serialize_objects()
-    deserialize_objects()
+# Применение методов к десериализованным объектам
+obj1.modify()
+obj2.print_info()
