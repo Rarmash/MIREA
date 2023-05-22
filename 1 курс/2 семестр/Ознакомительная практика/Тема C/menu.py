@@ -4,63 +4,79 @@ from food import Food
 
 
 class Menu:
-    def __init__(self, restaurant_name, address, drinks=None, foods=None):
+    def __init__(self, restaurant_name, address, drinks, foods):
         self.restaurant_name = restaurant_name
         self.address = address
-        self.drinks = drinks if drinks else []
-        self.foods = foods if foods else []
+        self.drinks = drinks
+        self.foods = foods
 
     def __str__(self):
-        return f'{self.restaurant_name}\n{self.address}\n\nНапитки:\n{self._print_items(self.drinks)}\n\nБлюда:\n{self._print_items(self.foods)}'
+        menu_info = f"Restaurant Name: {self.restaurant_name}\nAddress: {self.address}\n\nDrinks:\n"
+        for drink in self.drinks:
+            menu_info += str(drink) + "\n\n"
+        menu_info += "Foods:\n"
+        for food in self.foods:
+            menu_info += str(food) + "\n\n"
+        return menu_info
 
     def __len__(self):
         return len(self.drinks) + len(self.foods)
 
-    def __getitem__(self, index):
+    def get_item(self, index):
         if index < len(self.drinks):
             return self.drinks[index]
-        else:
+        elif index < len(self):
             return self.foods[index - len(self.drinks)]
-
-    def __setitem__(self, index, item):
-        if index < len(self.drinks):
-            self.drinks[index] = item
         else:
-            self.foods[index - len(self.drinks)] = item
+            raise IndexError("Menu index out of range")
 
-    def __delitem__(self, index):
+    def change_item(self, index, new_item):
+        if index < len(self.drinks):
+            self.drinks[index] = new_item
+        elif index < len(self):
+            self.foods[index - len(self.drinks)] = new_item
+        else:
+            raise IndexError("Menu index out of range")
+
+    def remove_item(self, index):
         if index < len(self.drinks):
             del self.drinks[index]
-        else:
+        elif index < len(self):
             del self.foods[index - len(self.drinks)]
-
-    def __add__(self, other):
-        if isinstance(other, Drink):
-            self.drinks.append(other)
-        elif isinstance(other, Food):
-            self.foods.append(other)
         else:
-            raise TypeError("В меню можно добавить лишь напитки либо блюда")
+            raise IndexError("Menu index out of range")
 
+    def __add__(self, item):
+        if isinstance(item, Drink):
+            self.drinks.append(item)
+        elif isinstance(item, Food):
+            self.foods.append(item)
+        else:
+            raise TypeError("Invalid item type for menu")
         return self
 
-    def __sub__(self, other):
-        if isinstance(other, Drink):
-            self.drinks.remove(other)
-        elif isinstance(other, Food):
-            self.foods.remove(other)
+    def __sub__(self, item):
+        if isinstance(item, Drink):
+            if item in self.drinks:
+                self.drinks.remove(item)
+            else:
+                raise ValueError("Drink not found in menu")
+        elif isinstance(item, Food):
+            if item in self.foods:
+                self.foods.remove(item)
+            else:
+                raise ValueError("Food not found in menu")
         else:
-            raise TypeError("В меню можно добавить лишь напитки либо блюда")
-
+            raise TypeError("Invalid item type for menu")
         return self
 
-    def create_txt_file(self, file_path):
-        with open(file_path, 'w', encoding='utf8') as f:
-            f.write(str(self))
+    def create_txt_file(self, filename):
+        with open(filename, "w") as file:
+            file.write(str(self))
             for drink in self.drinks:
-                f.write('\n\n' + str(drink))
+                file.write(f"Drink: {drink.name}\n")
+                file.write(drink.format_ingredients())
             for food in self.foods:
-                f.write('\n\n' + str(food))
-
-    def _print_items(self, items):
-        return '\n'.join([str(item) for item in items])
+                file.write(f"Food: {food.name}\n")
+                file.write("\n".join(food.ingredients))
+                file.write("\n\n")
