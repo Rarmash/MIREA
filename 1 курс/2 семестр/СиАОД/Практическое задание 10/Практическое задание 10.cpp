@@ -6,54 +6,34 @@
 
 using namespace std;
 
-vector<int> PrefixFunction(string str)
-{
-    int size = str.length();
-    vector<int> prefix(size, 0);
-
-    for (int i = 1; i < size; i++) 
-    {
-        int j = prefix[i - 1];
-
-        while (j > 0 && str[i] != str[j]) 
-        {
-            j = prefix[j - 1];
-        }
-
-        if (str[i] == str[j]) 
-        {
-            j++;
-        }
-
-        prefix[i] = j;
-    }
-
-    return prefix;
-}
-
-int FindMinimumLength(const string& text, const string& subStr, int& comp) {
-    int textSize = text.length();
-    int subSize = subStr.length();
-    vector<int> prefix = PrefixFunction(subStr);
+int FindMinimumLength(string pattern, string text, int& comparisons) {
+    int m = pattern.length(), n = text.length();
+    vector<int> pi(m);
     int j = 0;
-
-    for (int i = 0; i < textSize; i++) {
-        while (j > 0 && text[i] != subStr[j]) {
-            j = prefix[j - 1];
-            comp++;
+    for (int i = 1; i < m; i++) {
+        while (j > 0 && pattern[j] != pattern[i]) {
+            j = pi[j - 1];
+            comparisons++;
         }
-
-        if (text[i] == subStr[j]) {
+        if (pattern[j] == pattern[i]) {
             j++;
-            comp++;
         }
-
-        if (j == subSize) {
-            return i - j + 1;
-        }
+        pi[i] = j;
     }
-
-    return textSize / 5;
+    int k = 0;
+    j = 0;
+    while (k < n) {
+        while (j > 0 && pattern[j] != text[k]) {
+            j = pi[j - 1];
+            comparisons++;
+        }
+        if (pattern[j] == text[k]) {
+            j++;
+            comparisons++;
+        }
+        k++;
+    }
+    return (n - (m - j))/5;
 }
 
 bool IsPasswordValid(const string& password)
@@ -125,9 +105,9 @@ int main()
                 text += sent;
             }
 
-            inputFile.close();
+            inputFile.close(); 
 
-            int minLen = FindMinimumLength(text, subStr, comp);
+            int minLen = FindMinimumLength(subStr, text, comp);
 
             cout << "Минимально возможная длина исходной строки S: " << minLen << endl;
             cout << "Количество сравнений: " << comp << endl;
