@@ -53,12 +53,13 @@ food2 = Food("Food Y", 12, "600g", "50 minutes", ["Ingredient Y"])
 menu = Menu("Restaurant", "123 Main Street", [drink1, drink2], [food1, food2])
 print(menu)
 print(len(menu))
-print(menu.get_item(1))
-menu.change_item(1, drink)
+menu[1]
+menu.__setitem__(1, food)
 print(menu)
-menu.remove_item(0)
+del menu[1]
 print(menu)
 menu + food
+menu + drink
 print(menu)
 menu - drink
 print(menu)

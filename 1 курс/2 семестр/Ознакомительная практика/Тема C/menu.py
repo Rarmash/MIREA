@@ -22,30 +22,30 @@ class Menu:
     def __len__(self):
         return len(self.drinks) + len(self.foods)
 
-    def get_item(self, index):
-        if index < len(self.drinks):
+    def __getitem__(self, index):
+        if index < 0 or index >= len(self):
+            raise IndexError("Menu index out of range")
+        elif index < len(self.drinks):
             return self.drinks[index]
-        elif index < len(self):
+        else:
             return self.foods[index - len(self.drinks)]
-        else:
-            raise IndexError("Menu index out of range")
 
-    def change_item(self, index, new_item):
-        if index < len(self.drinks):
+    def __setitem__(self, index, new_item):
+        if index < 0 or index >= len(self):
+            raise IndexError("Menu index out of range")
+        elif index < len(self.drinks):
             self.drinks[index] = new_item
-        elif index < len(self):
+        else:
             self.foods[index - len(self.drinks)] = new_item
-        else:
-            raise IndexError("Menu index out of range")
 
-    def remove_item(self, index):
-        if index < len(self.drinks):
+    def __delitem__(self, index):
+        if index < 0 or index >= len(self):
+            raise IndexError("Menu index out of range")
+        elif index < len(self.drinks):
             del self.drinks[index]
-        elif index < len(self):
-            del self.foods[index - len(self.drinks)]
         else:
-            raise IndexError("Menu index out of range")
-
+            del self.foods[index - len(self.drinks)]
+    
     def __add__(self, item):
         if isinstance(item, Drink):
             self.drinks.append(item)
@@ -71,7 +71,7 @@ class Menu:
         return self
 
     def create_txt_file(self, filename):
-        with open(filename, "w") as file:
+        with open(filename, "w", encoding='utf8') as file:
             file.write(str(self))
             for drink in self.drinks:
                 file.write(f"Drink: {drink.name}\n")
