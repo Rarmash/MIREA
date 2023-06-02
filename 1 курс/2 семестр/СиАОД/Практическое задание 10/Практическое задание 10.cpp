@@ -38,21 +38,13 @@ int FindMinimumLength(string pattern, string text, int& comparisons) {
 
 bool IsPasswordValid(const string& password)
 {
-    for (char ch : password)
-    {
-        if (!((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9')))
-        {
-            return false;
-        }
-    }
-
-    return true;
+    regex passwordRegex("^[A-Za-z0-9]+$");
+    return regex_match(password, passwordRegex);
 }
 
 void CheckPasswords(const string& fileName)
 {
     ifstream inputFile(fileName);
-
     string password;
     vector<string> validPasswords;
 
