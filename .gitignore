@@ -526,3 +526,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+*.class
+.vscode
