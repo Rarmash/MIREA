@@ -1,7 +1,5 @@
 package modules;
 
-import java.lang.*;
-
 public class Author {
     private String name;
     private String email;
@@ -30,6 +28,6 @@ public class Author {
     }
 
     public String toString() {
-        return this.name+", email - "+this.email+", gender - "+this.gender;
+        return this.name+" ("+this.gender+") at "+this.email;
     }
 }

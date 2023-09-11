@@ -1,18 +1,14 @@
 package modules;
 
-import java.lang.*;
-
 public class Ball {
     private double x = 0.0;
     private double y = 0.0;
 
-    Ball(double x, double y){
+    public Ball() {}
+
+    public Ball(double x, double y){
         this.x = x;
         this.y = y;
-    }
-
-    Ball() {
-
     }
 
     public double getX() {
@@ -42,6 +38,6 @@ public class Ball {
     }
 
     public String toString(){
-        return "Ball: x = " + x + " y = " + y; 
+        return "Ball @ ("+this.x+", "+this.y+")."; 
     }
 }

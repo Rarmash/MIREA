@@ -1,7 +1,5 @@
 package modules;
 
-import java.lang.*;
-
 public class Ball {
     private String manufacturer;
     private int pressure;

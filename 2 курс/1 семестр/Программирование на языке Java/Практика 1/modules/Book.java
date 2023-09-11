@@ -1,7 +1,5 @@
 package modules;
 
-import java.lang.*;
-
 public class Book {
     private String title;
     private int yearofRelease;
