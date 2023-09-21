@@ -3,61 +3,126 @@ import zipfile
 
 class VShell:
     def __init__(self, filesystem_archive: str):
+        """VShell object constructor.
+
+        Args:
+            filesystem_archive (str): Path to filesystem
+        """
         self.currentpath = ""
         self.filesystem = zipfile.ZipFile(filesystem_archive)
         self.filesystemlist = self.filesystem.filelist
         
     def start(self):
+        """
+        VShell initialization
+        """
         while True:
             cmd = input(f'vshell:{self.currentpath}/$ ').split(" ")
             
-            if cmd[0] == "ls":
+            if cmd[0].lower() == "ls":
                 self.ls()
                 
-            if cmd[0] == "cd":
-                self.cd(cmd[1])
+            elif cmd[0].lower() == "cd":
+                if not self.cd(cmd[1]):
+                    print(f'Directory "{cmd[1]}" does not exist.')
+                    
+            elif cmd[0].lower() == "pwd":
+                self.pwd()
             
-            if cmd[0] == 'exit':
+            elif cmd[0].lower() == "cat":
+                if not self.cat(cmd[1]):
+                    print(f'Error while opening {cmd[1]}.')
+            
+            elif cmd[0].lower() == 'exit':
                 break
             
-            
-    def getPath(self, path: str):
-        for curpath in path:
-            if curpath == "/":
-                path = path[1:]
             else:
-                break
-        return path
+                print('Unknown command.')
     
     def pwd(self):
-        pass
+        """
+        Displays the current working directory.
+        """
+        print(f'/root{self.currentpath}/')
     
     def ls(self):
-        path = self.getPath(self.currentpath)
+        """
+        Get files list of current directory.
+        """
+        if self.currentpath != "":
+            if self.currentpath[0] == "/":
+                path = self.currentpath[1:]
+        if 'path' not in locals():
+            path = self.currentpath    
         for file in self.filesystemlist:
             if path in file.filename:
-                file_names = file.filename[len(path):].split("/")  # разбиение имен которые идут после
-                # пути, в котором мы находимся
-                file_names = list(filter(None, file_names))  # удаление пустых строк из списка
-                if len(file_names) > 1 or not file_names:  # пропускаем повторы
+                files = file.filename[len(path):].split("/")
+                files = list(filter(None, files)) # Deleting empty strings
+                if len(files) > 1 or not files: # If repeating
                     continue
-                print(file_names[0])
+                print(files[0])
     
-    def cd(self, newpath):
-        if "root:" in newpath:
-            self.currentpath = newpath[len('root:'):]
-        else:
-            self.currentpath += "/" + newpath
-            
-        if "../" in self.currentpath:
-            local_path = local_path[:len(local_path) - len(local_path.split("/")[-1]) - 1]
+    def cd(self, newpath: str):
+        """A function to navigate to a specific directory within VShell.
+
+        Args:
+            newpath (str): The relative or absolute path in the directory to which you want to move.
+
+        Returns:
+            Bool: True if success else False if path does not exist.
+        """
+        if "/root" in newpath: # If absolute path
+            newpath = newpath.replace('/root/', '')
+            for file in self.filesystemlist:
+                if newpath in file.filename:
+                    self.currentpath = "/" + newpath
+                    return True
+        elif "../" in newpath: # If moving to directory ahead
+            try:
+                while self.currentpath[-1] != "/":
+                    self.currentpath = self.currentpath[:-1]
+            except IndexError:
+                return False
+            self.currentpath = self.currentpath[:-1]
             return True
+        elif newpath == "": # If current directory
+            pass
+        else:
+            for file in self.filesystemlist:
+                if newpath in file.filename:
+                    if file.is_dir():
+                        self.currentpath += "/" + newpath
+                        return True
+        return False
+          
+    def cat(self, filename: str):
+        """Reading a specific file.
 
+        Args:
+            filename (str): Filename what must be opened.
 
-    
-    def cat(self):
-        pass
-    
+        Returns:
+            Bool: True if success else False if path does not exist.
+        """
+        path = self.currentpath
+        if "/root" in filename:
+            filename = filename.replace('/root/', '')
+            for file in self.filesystemlist:
+                if filename in file.filename:
+                    path = "/" + filename
+        else:
+            path += "/" + filename
+        if path != "":
+            if path[0] == "/":
+                path = path[1:]
+        try:
+            with self.filesystem.open(path, 'r') as f:
+                lines = [x.decode('utf8').strip() for x in f.readlines()]
+                for line in lines:
+                    print(line)
+            return True
+        except KeyError:
+            return False
     
 if __name__ == '__main__':
     if len(sys.argv) != 2:
