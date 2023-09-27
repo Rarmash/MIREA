@@ -20,18 +20,28 @@ class VShell:
             cmd = input(f'vshell:{self.currentpath}/$ ').split(" ")
             
             if cmd[0].lower() == "ls":
-                self.ls()
+                try:
+                    if not self.ls(cmd[1]):
+                        print(f'Directory "{cmd[1]}" does not exist.')
+                except:
+                    self.ls("")
                 
             elif cmd[0].lower() == "cd":
-                if not self.cd(cmd[1]):
-                    print(f'Directory "{cmd[1]}" does not exist.')
+                try:
+                    if not self.cd(cmd[1]):
+                        print(f'Directory "{cmd[1]}" does not exist.')
+                except:
+                    self.cd("")
                     
             elif cmd[0].lower() == "pwd":
                 self.pwd()
             
             elif cmd[0].lower() == "cat":
-                if not self.cat(cmd[1]):
-                    print(f'Error while opening {cmd[1]}.')
+                try:
+                    if not self.cat(cmd[1]):
+                        print(f'Error while opening {cmd[1]}.')
+                except:
+                    self.cat("")
             
             elif cmd[0].lower() == 'exit':
                 break
@@ -45,15 +55,24 @@ class VShell:
         """
         print(f'/root{self.currentpath}/')
     
-    def ls(self):
+    def ls(self, newpath: str):
         """
         Get files list of current directory.
         """
-        if self.currentpath != "":
-            if self.currentpath[0] == "/":
-                path = self.currentpath[1:]
-        if 'path' not in locals():
-            path = self.currentpath    
+        path = self.currentpath
+        if "/root" in newpath:
+            path = newpath.replace('/root/', '')
+        else:
+            path += "/" + newpath
+        if path != "":
+            if path[0] == "/":
+                path = path[1:]
+        flag = False
+        for file in self.filesystemlist:
+            if path in file.filename:
+                flag = True
+        if flag == False:
+            return False
         for file in self.filesystemlist:
             if path in file.filename:
                 files = file.filename[len(path):].split("/")
@@ -61,6 +80,8 @@ class VShell:
                 if len(files) > 1 or not files: # If repeating
                     continue
                 print(files[0])
+        return True
+            
     
     def cd(self, newpath: str):
         """A function to navigate to a specific directory within VShell.
@@ -77,7 +98,7 @@ class VShell:
                 if newpath in file.filename:
                     self.currentpath = "/" + newpath
                     return True
-        elif "../" in newpath: # If moving to directory ahead
+        elif ".." in newpath: # If moving to directory ahead
             try:
                 while self.currentpath[-1] != "/":
                     self.currentpath = self.currentpath[:-1]
