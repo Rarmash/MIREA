@@ -1,0 +1,11 @@
+ls
+ls /root/Right
+cd
+cd /root/Left
+cd ..
+cd /root/
+cd /root/Right/Test
+pwd
+cd /root/
+cat main.js
+cat /root/Right/Test/1444.txt

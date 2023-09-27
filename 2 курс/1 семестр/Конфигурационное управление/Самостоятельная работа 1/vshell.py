@@ -1,5 +1,6 @@
 import sys
 import zipfile
+import argparse
 
 class VShell:
     def __init__(self, filesystem_archive: str):
@@ -80,8 +81,7 @@ class VShell:
                 if len(files) > 1 or not files: # If repeating
                     continue
                 print(files[0])
-        return True
-            
+        return True 
     
     def cd(self, newpath: str):
         """A function to navigate to a specific directory within VShell.
@@ -126,6 +126,9 @@ class VShell:
             Bool: True if success else False if path does not exist.
         """
         path = self.currentpath
+        if path != "":
+            if path[0] == "/":
+                path = path[1:]
         if "/root" in filename:
             filename = filename.replace('/root/', '')
             for file in self.filesystemlist:
@@ -136,8 +139,6 @@ class VShell:
         if path != "":
             if path[0] == "/":
                 path = path[1:]
-        else:
-            return False
         try:
             with self.filesystem.open(path, 'r') as f:
                 lines = [x.decode('utf8').strip() for x in f.readlines()]
@@ -147,9 +148,98 @@ class VShell:
         except KeyError:
             return False
     
+    def run_script(self, script_file: str):
+        """Run commands from a script file.
+
+        Args:
+            script_file (str): Path to the script file.
+        """
+        try:
+            with open(script_file, 'r') as file:
+                for line in file:
+                    self.execute_command(line.strip())
+        except FileNotFoundError:
+            print(f"Script file '{script_file}' not found.")
+    
+    def execute_command(self, command: str):
+        """Execute a single command.
+
+        Args:
+            command (str): The command to execute.
+        """
+        cmd = command.split(" ")
+        print("Executing command: ", cmd)
+        
+        if cmd[0].lower() == "ls":
+            try:
+                if not self.ls(cmd[1]):
+                    print(f'Directory "{cmd[1]}" does not exist.')
+            except:
+                self.ls("")
+        
+        elif cmd[0].lower() == "cd":
+            try:
+                if not self.cd(cmd[1]):
+                    print(f'Directory "{cmd[1]}" does not exist.')
+            except:
+                self.cd("")
+                    
+        elif cmd[0].lower() == "pwd":
+            self.pwd()
+        
+        elif cmd[0].lower() == "cat":
+            try:
+                if not self.cat(cmd[1]):
+                    print(f'Error while opening {cmd[1]}.')
+            except:
+                self.cat("")
+        
+        elif cmd[0].lower() == 'exit':
+            exit()
+            
+    def test_commands(self):
+        """Test all implemented commands."""
+        print("Testing commands...")
+        print("======================================")
+
+        # Test ls
+        print("Testing ls command:")
+        self.ls("")
+        self.ls("/root/Right")
+        print("======================================")
+
+        # Test cd
+        print("Testing cd command:")
+        self.cd("")
+        self.cd("/root/Left")
+        self.cd("..")
+        self.cd("/root/")
+        print("======================================")
+
+        # Test pwd
+        print("Testing pwd command:")
+        self.cd("/root/Right/Test")
+        self.pwd()
+        self.cd("/root/")
+        print("======================================")
+        
+        # Test cat
+        print("Testing cat command:")
+        self.cat("main.js")
+        self.cat("/root/Right/Test/1444.txt")
+        print("======================================")
+    
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print("Usage: python vshell.py <filesystem_archive>")
+    parser = argparse.ArgumentParser(description="VShell")
+    parser.add_argument('filesystem_archive', help="Path to the filesystem archive.")
+    parser.add_argument('--script', help="Path to a script file containing commands.")
+    
+    args = parser.parse_args()
+    
+    vshell = VShell(args.filesystem_archive)
+    
+    if args.script:
+        vshell.run_script(args.script)
     else:
-        vshell = VShell(sys.argv[1])
         vshell.start()
+        # vshell.test_commands()
