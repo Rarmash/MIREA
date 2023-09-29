@@ -1,6 +1,6 @@
-import sys
 import zipfile
 import argparse
+import os
 
 class VShell:
     def __init__(self, filesystem_archive: str):
@@ -44,6 +44,9 @@ class VShell:
                 except:
                     self.cat("")
             
+            elif cmd[0].lower() == "clear" or cmd[0].lower() == "cls":
+                self.clear()
+            
             elif cmd[0].lower() == 'exit':
                 break
             
@@ -63,6 +66,8 @@ class VShell:
         path = self.currentpath
         if "/root" in newpath:
             path = newpath.replace('/root/', '')
+        elif newpath == "~" or newpath == "/":
+            path = ""
         else:
             path += "/" + newpath
         if path != "":
@@ -97,14 +102,16 @@ class VShell:
             for file in self.filesystemlist:
                 if newpath in file.filename:
                     self.currentpath = "/" + newpath
-                    return True
-        elif ".." in newpath: # If moving to directory ahead
+        elif newpath == "..": # If moving to directory ahead
             try:
                 while self.currentpath[-1] != "/":
                     self.currentpath = self.currentpath[:-1]
             except IndexError:
                 return False
             self.currentpath = self.currentpath[:-1]
+            return True
+        elif newpath == "~" or newpath == "/":
+            self.currentpath = ""
             return True
         elif newpath == "": # If current directory
             pass
@@ -147,6 +154,12 @@ class VShell:
             return True
         except KeyError:
             return False
+        
+    def clear(self):
+        """
+        Clear the terminal.
+        """
+        os.system('cls||clear')
     
     def run_script(self, script_file: str):
         """Run commands from a script file.
@@ -186,6 +199,10 @@ class VShell:
                     
         elif cmd[0].lower() == "pwd":
             self.pwd()
+            
+        elif cmd[0].lower() == "cls" or cmd[0].lower() == "clear":
+            self.clear()
+    
         
         elif cmd[0].lower() == "cat":
             try:
@@ -198,7 +215,9 @@ class VShell:
             exit()
             
     def test_commands(self):
-        """Test all implemented commands."""
+        """
+        Test all implemented commands.
+        """
         print("Testing commands...")
         print("======================================")
 
