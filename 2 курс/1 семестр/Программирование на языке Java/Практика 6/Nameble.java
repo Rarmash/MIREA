@@ -1,0 +1,3 @@
+interface Nameble {
+    String getName();
+}
