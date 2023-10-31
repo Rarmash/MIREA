@@ -7,9 +7,9 @@ public class Task1 {
         // Дата и время сдачи задания
         Date dateReceived = new Date();
 
-        // Дата и время сдачи задания (предположим, что сдача задания произойдет через 7 дней)
+        // Дата и время сдачи задания
         long currentTimeMillis = System.currentTimeMillis();
-        long oneWeekInMillis = 6 * 24 * 60 * 60 * 1000L;
+        long oneWeekInMillis = 6 * 24 * 60 * 60 * 1000L; // 7 дней
         Date dateDue = new Date(currentTimeMillis + oneWeekInMillis);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat();
