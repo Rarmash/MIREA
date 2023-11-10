@@ -16,22 +16,14 @@ public:
     // Building the tree
     void build();
 
-    // Arithmetic expression output
-    void expression() const;
-
     // Calculating the value of an expression
     DataType evaluate() const;
-
-    // Exchanging child operator nodes
-    void commute();
-
-    // Checking the equivalence of two trees
-    bool isEquivalent(const ExprTree& source) const;
 
     // Displaying the tree structure
     void showStructure() const;
 
-private:
+    // Get the root of the tree
+    class ExprTreeNode;
     // Expression tree node definition
     class ExprTreeNode {
     public:
@@ -43,6 +35,14 @@ private:
         ExprTreeNode* right; // Pointer to the right child
     };
 
+    // Calculating the value of an expression (helper function)
+    DataType evaluateHelper(ExprTreeNode* node) const;
+
+    ExprTreeNode* getRoot() const {
+        return root;
+    }
+
+private:
     // Displaying the tree structure (helper function)
     void showHelper(ExprTreeNode* p, int level) const;
 
@@ -52,6 +52,5 @@ private:
     // Pointer to the root of the tree
     ExprTreeNode* root;
 };
-
 
 #endif //__4_EXPRESSIONTREE_H

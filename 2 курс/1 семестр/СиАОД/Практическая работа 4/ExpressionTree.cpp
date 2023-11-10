@@ -51,13 +51,57 @@ void ExprTree<DataType>::showHelper(ExprTree::ExprTreeNode *p, int level) const 
         cout << " " << p->dataItem; // Output dataItem
         if ((p->left != 0) && // Output "connector"
             (p->right != 0))
-            cout << "<";
+            cout << " <";
         else if (p->right != 0)
             cout << "/";
         else if (p->left != 0)
             cout << "\\";
         cout << endl;
         showHelper(p->left, level + 1); // Output left subtree
+    }
+}
+
+template<typename DataType>
+DataType ExprTree<DataType>::evaluate() const {
+    return evaluateHelper(root);
+}
+
+template<typename DataType>
+DataType ExprTree<DataType>::evaluateHelper(ExprTreeNode* node) const {
+    if (node == nullptr) {
+        // Empty subtree, return some default value (you may want to handle this differently)
+        return DataType();
+    }
+
+    if (isdigit(node->dataItem)) {
+        // Operand, return its value
+        return static_cast<DataType>(node->dataItem - '0');
+    } else {
+        // Operator, perform the operation based on the operator
+        DataType leftValue = evaluateHelper(node->left);
+        DataType rightValue = evaluateHelper(node->right);
+
+        switch (node->dataItem) {
+            case '+':
+                return leftValue + rightValue;
+            case '-':
+                return leftValue - rightValue;
+            case '*':
+                return leftValue * rightValue;
+            case '/':
+                // Handle division by zero if necessary
+                if (rightValue != 0) {
+                    return leftValue / rightValue;
+                } else {
+                    // Handle division by zero (you may want to handle this differently)
+                    cout << "Error: Division by zero" << endl;
+                    return DataType(); // Return some default value
+                }
+            default:
+                // Handle unknown operator (you may want to handle this differently)
+                cout << "Error: Unknown operator" << endl;
+                return DataType(); // Return some default value
+        }
     }
 }
 
