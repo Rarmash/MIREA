@@ -1,11 +1,11 @@
-SUBDESIGN 'Q21'
+SUBDESIGN 'Q2'
 (
-A, E : input;
+A, B, E : input;
 D0, D1, D2, D3 : output;
 )
 begin
-D0 = !A & !E;
-D1 = !A & E;
-D2 = A & !E;
-D3 = A & E;
+D0 = !A & !B & E;
+D1 = !A & B & E;
+D2 = A & !B & E;
+D3 = A & B & E;
 end;
