@@ -2,10 +2,10 @@ package Task1;
 
 import java.math.BigInteger;
 
-public class InnError extends Exception{
-    private BigInteger innNum;
+public class INNException extends Exception{
+    private final BigInteger innNum;
 
-    public InnError(BigInteger inn){
+    public INNException(BigInteger inn){
         super("ИНН с номером " + inn + " не действителен");
         innNum = inn;
     }
