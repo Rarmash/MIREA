@@ -13,21 +13,20 @@ public class InnCheck {
                 BigInteger inn = new BigInteger(scaner.nextLine());
                 checkInn(inn);
                 break;
-            }catch (InnError e){
+            }catch (INNException e){
                 System.out.println(e.getLocalizedMessage());
             }
         }
         System.out.println("ИНН действителен");
     }
 
-    public static boolean checkInn(BigInteger inn) throws InnError{
+    public static void checkInn(BigInteger inn) throws INNException {
         int i = 0;
         BigInteger cInn = new BigInteger(inn.toByteArray());
         while(!cInn.equals(new BigInteger("0"))){
             i++;
             cInn = new BigInteger(cInn.divide(new BigInteger("10")).toByteArray());
         }
-        if(i != 10 && i != 12) throw new InnError(inn);
-        return true;
+        if(i != 10 && i != 12) throw new INNException(inn);
     }
 }
