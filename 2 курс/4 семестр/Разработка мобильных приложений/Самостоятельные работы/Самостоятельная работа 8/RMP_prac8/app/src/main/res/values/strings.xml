@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Prac8</string>
+    <string name="parallel_start">Параллельный запуск</string>
+    <string name="sequence_start">Последовательный запуск</string>
+    <string name="image">Картинка</string>
+</resources>

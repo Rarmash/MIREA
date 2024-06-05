@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/title_input"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Title" />
+
+    <EditText
+        android:id="@+id/year_input"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Year of release" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="377dp"
+        android:layout_height="84dp"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="377dp"
+        android:layout_height="97dp"
+        android:text="Delete" />
+
+    <Button
+        android:id="@+id/find_button"
+        android:layout_width="381dp"
+        android:layout_height="97dp"
+        android:text="Find" />
+
+    <Button
+        android:id="@+id/update_button"
+        android:layout_width="383dp"
+        android:layout_height="104dp"
+        android:text="Update" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/games_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_game" />
+
+</LinearLayout>

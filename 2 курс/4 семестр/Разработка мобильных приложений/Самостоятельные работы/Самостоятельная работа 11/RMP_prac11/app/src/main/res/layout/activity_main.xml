@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/webviewBTn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/web_view" />
+
+    <Button
+        android:id="@+id/musicBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/music" />
+
+    <Button
+        android:id="@+id/uiBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ui" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/rNotificationsBtn"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="@string/rNotifications" />
+
+        <Button
+            android:id="@+id/dNotificationsBtn"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dNotifications" />
+    </LinearLayout>
+
+
+</LinearLayout>

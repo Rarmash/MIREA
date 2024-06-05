@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Практика 1</string>
+    <string name="edit_message">Введите сообщение</string>
+    <string name="button_send">Отправить</string>
+    <string name="action_settings">Настройки</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_display_message">My Message</string>
+</resources>

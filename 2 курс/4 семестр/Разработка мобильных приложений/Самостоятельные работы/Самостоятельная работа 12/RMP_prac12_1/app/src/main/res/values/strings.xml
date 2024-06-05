@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Prac12_1</string>
+    <string name="hintText">Enter user name</string>
+    <string name="heading">Content Provider in Android</string>
+    <string name="insertButtontext">Insert data</string>
+    <string name="loadButtonText">Load data</string>
+</resources>

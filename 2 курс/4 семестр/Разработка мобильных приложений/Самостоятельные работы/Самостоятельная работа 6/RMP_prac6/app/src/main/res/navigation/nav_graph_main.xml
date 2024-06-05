@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/Halo">
+
+    <fragment
+        android:id="@+id/Halo"
+        android:name="com.rarmash.prac6.Halo"
+        android:label="fragment_main1"
+        tools:layout="@layout/activity_halo" >
+        <action
+            android:id="@+id/action_mainFragment1_mainFragment2"
+            app:destination="@id/Halo" />
+        <action
+            android:id="@+id/action_mainFragment1_self"
+            app:destination="@id/Halo" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/Forza"
+        android:name="com.rarmash.prac6.Forza"
+        android:label="fragment_main2"
+        tools:layout="@layout/activity_forza" >
+        <action
+            android:id="@+id/action_mainFragment2_mainFragment1"
+            app:destination="@id/Forza" />
+        <action
+            android:id="@+id/action_mainFragment2_self2"
+            app:destination="@id/Forza" />
+    </fragment>
+</navigation>
