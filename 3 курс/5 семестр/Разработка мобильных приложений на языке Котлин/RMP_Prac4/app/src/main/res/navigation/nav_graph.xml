@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentCamera">
+
+
+    <fragment
+        android:id="@+id/fragmentCamera"
+        android:name="com.rarmash.prac4.CameraFragment"
+        android:label="FragmentCamera">
+        <action
+            android:id="@+id/action_fragmentCamera_to_fragmentPhotos"
+            app:destination="@id/fragmentPhotos" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPhotos"
+        android:name="com.rarmash.prac4.PhotosFragment"
+        android:label="fragment_photos"
+        tools:layout="@layout/fragment_photos" />
+
+</navigation>
