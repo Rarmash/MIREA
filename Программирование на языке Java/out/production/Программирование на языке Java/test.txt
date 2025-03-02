@@ -1,0 +1,5 @@
+apple banana
+cat dog
+elephant tiger
+orange eagle
+rabbit bat

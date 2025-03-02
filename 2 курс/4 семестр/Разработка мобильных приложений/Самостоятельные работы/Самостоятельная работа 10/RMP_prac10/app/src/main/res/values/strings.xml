@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Prac10</string>
-    <string name="save">Save</string>
-    <string name="title">Title</string>
-    <string name="year">Year</string>
-    <string name="update">Update</string>
-    <string name="delete">Delete</string>
-    <string name="find">Find</string>
-</resources>

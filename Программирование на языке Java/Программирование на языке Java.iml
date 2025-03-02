@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/Практика 1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 11" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 12" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 13" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 14" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 15" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 16" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 17" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 18" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 19" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 20" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 21" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 22" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 23" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 24" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 3" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 4" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 5" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 6" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 7" isTestSource="false" packagePrefix="Work_7" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 8" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Практика 9" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
