@@ -1,0 +1,125 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36" version="27.0.6">
+  <diagram name="Страница — 1" id="aAfnVuFn_h6w6PfvDfZu">
+    <mxGraphModel dx="548" dy="288" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Qf_zqHg292Hjee23bhL5-1" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#ff0000;" parent="1" vertex="1">
+          <mxGeometry x="95" y="10" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Qf_zqHg292Hjee23bhL5-1" target="Qf_zqHg292Hjee23bhL5-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-3" value="[Вход в систему]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Qf_zqHg292Hjee23bhL5-2" vertex="1" connectable="0">
+          <mxGeometry x="-0.0083" y="-2" relative="1" as="geometry">
+            <mxPoint x="-1" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-4" value="Инициализация сеанса&#xa;диагностики" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeLast=1;container=0;fontColor=#000000;collapsible=0;rounded=1;arcSize=30;strokeColor=#ff0000;fillColor=#ffffc0;swimlaneFillColor=#ffffc0;dropTarget=0;" parent="1" vertex="1">
+          <mxGeometry x="30" y="80" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-5" value="entry / ожидание действия пользователя" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;fontColor=#000000;" parent="Qf_zqHg292Hjee23bhL5-4" vertex="1">
+          <mxGeometry y="30" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-6" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Qf_zqHg292Hjee23bhL5-4" target="Qf_zqHg292Hjee23bhL5-7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-10" value="[Сеанс диагностики инициализирован]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Qf_zqHg292Hjee23bhL5-6" vertex="1" connectable="0">
+          <mxGeometry x="0.0267" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-7" value="Ввод симптомов" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeLast=1;container=0;fontColor=#000000;collapsible=0;rounded=1;arcSize=30;strokeColor=#ff0000;fillColor=#ffffc0;swimlaneFillColor=#ffffc0;dropTarget=0;" parent="1" vertex="1">
+          <mxGeometry x="30" y="210" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-8" value="entry / форма ввода жалоб и признаков неисправности&lt;div&gt;do / ввод жалоб&lt;br&gt;&lt;div&gt;do / сохранение симптомов в систему&lt;/div&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;fontColor=#000000;" parent="Qf_zqHg292Hjee23bhL5-7" vertex="1">
+          <mxGeometry y="30" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-9" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Qf_zqHg292Hjee23bhL5-7" target="Qf_zqHg292Hjee23bhL5-11" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="105" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-17" value="[Симптомы введены]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Qf_zqHg292Hjee23bhL5-9" vertex="1" connectable="0">
+          <mxGeometry x="-0.3733" y="1" relative="1" as="geometry">
+            <mxPoint x="-1" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-11" value="Формирование &#xa;предварительного&#xa;диагноза" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=0;resizeLast=1;container=0;fontColor=#000000;collapsible=0;rounded=1;arcSize=24;strokeColor=#ff0000;fillColor=#ffffc0;swimlaneFillColor=#ffffc0;dropTarget=0;" parent="1" vertex="1">
+          <mxGeometry x="30" y="390" width="160" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-12" value="entry / запуск анализа на основе введённых данных&lt;br&gt;do / анализ симптомов, выявление возможных причин" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;fontColor=#000000;" parent="Qf_zqHg292Hjee23bhL5-11" vertex="1">
+          <mxGeometry y="50" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-13" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Qf_zqHg292Hjee23bhL5-11" target="Qf_zqHg292Hjee23bhL5-14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-18" value="[Диагноз сформирован]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Qf_zqHg292Hjee23bhL5-13" vertex="1" connectable="0">
+          <mxGeometry x="-0.3733" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-14" value="Подтверждение диагноза" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeLast=1;container=0;fontColor=#000000;collapsible=0;rounded=1;arcSize=30;strokeColor=#ff0000;fillColor=#ffffc0;swimlaneFillColor=#ffffc0;dropTarget=0;" parent="1" vertex="1">
+          <mxGeometry x="30" y="580" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-15" value="entry / отображение предварительного диагноза инженеру&lt;br&gt;do / ручное подтверждение или корректировка" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;fontColor=#000000;" parent="Qf_zqHg292Hjee23bhL5-14" vertex="1">
+          <mxGeometry y="30" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-19" value="entry / отображение предварительного диагноза инженеру&lt;br data-end=&quot;1126&quot; data-start=&quot;1123&quot;&gt;&lt;br/&gt;do / ручное подтверждение или корректировка" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;fontColor=#000000;" parent="Qf_zqHg292Hjee23bhL5-14" vertex="1">
+          <mxGeometry y="120" width="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-16" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Qf_zqHg292Hjee23bhL5-14" target="Qf_zqHg292Hjee23bhL5-20" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-23" value="[Диагноз подтверждён]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Qf_zqHg292Hjee23bhL5-16" vertex="1" connectable="0">
+          <mxGeometry x="-0.0057" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-20" value="Подбор рекомендаций&#xa;по устранению" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeLast=1;container=0;fontColor=#000000;collapsible=0;rounded=1;arcSize=30;strokeColor=#ff0000;fillColor=#ffffc0;swimlaneFillColor=#ffffc0;dropTarget=0;" parent="1" vertex="1">
+          <mxGeometry x="30" y="770" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-21" value="entry / анализ подтверждённого диагноза&lt;br&gt;do / сопоставление с базой неисправностей и методов ремонта" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;fontColor=#000000;" parent="Qf_zqHg292Hjee23bhL5-20" vertex="1">
+          <mxGeometry y="30" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-22" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Qf_zqHg292Hjee23bhL5-20" target="Qf_zqHg292Hjee23bhL5-24" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="890" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-27" value="[Рекомендации найдены]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Qf_zqHg292Hjee23bhL5-22" vertex="1" connectable="0">
+          <mxGeometry x="-0.048" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-24" value="Формирование&#xa;итогового отчёта" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeLast=1;container=0;fontColor=#000000;collapsible=0;rounded=1;arcSize=30;strokeColor=#ff0000;fillColor=#ffffc0;swimlaneFillColor=#ffffc0;dropTarget=0;" parent="1" vertex="1">
+          <mxGeometry x="30" y="940" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-25" value="entry / генерация документа по шаблону&lt;br&gt;exit / сохранение отчёта, предоставление пользователю" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;fontColor=#000000;" parent="Qf_zqHg292Hjee23bhL5-24" vertex="1">
+          <mxGeometry y="30" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-26" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Qf_zqHg292Hjee23bhL5-24" target="Qf_zqHg292Hjee23bhL5-28" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="1110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-29" value="[Отчёт сформирован]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Qf_zqHg292Hjee23bhL5-26" vertex="1" connectable="0">
+          <mxGeometry x="-0.1837" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Qf_zqHg292Hjee23bhL5-28" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#ff0000;" parent="1" vertex="1">
+          <mxGeometry x="95" y="1099" width="30" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
