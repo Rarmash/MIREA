@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: musicdb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  user-service:
+    build: ./user-service
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://user:password@postgres:5432/musicdb
+    depends_on:
+      - postgres
+
+  track-service:
+    build: ./track-service
+    ports:
+      - "8001:8001"
+    environment:
+      DATABASE_URL: postgresql://user:password@postgres:5432/musicdb
+    depends_on:
+      - postgres
+      - user-service
+
+volumes:
+  postgres_data:

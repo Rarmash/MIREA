@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_DB: musicdb
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U user"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install -r user-service/requirements.txt
+          pip install -r track-service/requirements.txt
+
+      - name: Start user-service
+        env:
+          DATABASE_URL: postgresql://user:password@localhost:5432/musicdb
+        run: |
+          uvicorn app.main:app --host 0.0.0.0 --port 8000 &
+        working-directory: user-service
+
+      - name: Wait for user-service
+        run: |
+          echo "Waiting for user-service to be ready..."
+          for i in {1..20}; do
+            if curl -s http://localhost:8000 > /dev/null; then
+              echo "user-service is up"
+              exit 0
+            fi
+            echo "Still waiting..."
+            sleep 2
+          done
+          echo "user-service did not start in time"
+          exit 1
+
+      - name: Start track-service
+        env:
+          DATABASE_URL: postgresql://user:password@localhost:5432/musicdb
+          USER_SERVICE_URL: http://localhost:8000
+          PYTHONPATH: .
+        run: |
+          uvicorn app.main:app --host 0.0.0.0 --port 8001 > uvicorn.log 2>&1 &
+        working-directory: track-service
+
+      - name: Wait for track-service
+        run: |
+          for i in {1..20}; do
+            if curl -s http://localhost:8001 > /dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
+
+      - name: Run tests
+        env:
+          DATABASE_URL: postgresql://user:password@localhost:5432/musicdb
+          USER_SERVICE_URL: http://localhost:8000
+        run: |
+          pytest user-service/tests

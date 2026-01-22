@@ -1,0 +1,45 @@
+name: CI/CD - Yandex Serverless
+
+on:
+  push:
+
+jobs:
+  build-and-push-to-yc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: |
+          docker build ./track-service \
+            --file ./track-service/Dockerfile \
+            --tag cr.yandex/${{ secrets.YC_REGISTRY_ID }}/track-service:latest
+
+      - name: Login to YC Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: cr.yandex
+          username: json_key
+          password: ${{ secrets.YC_KEYS }}
+
+      - name: Push image to YC Registry
+        run: |
+          docker push cr.yandex/${{ secrets.YC_REGISTRY_ID }}/track-service:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-push-to-yc
+
+    steps:
+      - name: Deploy serverless container
+        uses: yc-actions/yc-sls-container-deploy@v1
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_KEYS }}
+          container-name: ${{ secrets.YC_CONTAINER_NAME }}
+          folder-id: ${{ secrets.YC_FOLDER_ID }}
+          revision-image-url: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/track-service:latest
+          revision-service-account-id: ${{ secrets.YC_SA_ID }}
+          revision-env: |
+            DATABASE_URL=${{ secrets.ENV_DATABASE_URL }}
